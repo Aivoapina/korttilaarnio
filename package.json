@@ -1,0 +1,72 @@
+{
+  "name": "credits-64",
+  "version": "1.0.0",
+  "description": "Credits maker bundle for nodecg",
+  "scripts": {
+    "start": "parcel watch src/credits.html --dist-dir graphics --public-url ./",
+    "build": "parcel build src/credits.html --dist-dir graphics --public-url ./",
+    "lint": "eslint src/",
+    "lint-fix": "eslint --fix src/",
+    "start-nodecg": "node ../../index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aivoapina/credits-64.git"
+  },
+  "keywords": [
+    "nodecg",
+    "bundle",
+    "credits",
+    "streaming"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "assetCategories": [
+      {
+        "name": "assets",
+        "title": "Assets",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png",
+          "mp4"
+        ]
+      }
+    ],
+    "dashboardPanels": [
+      {
+        "name": "credits",
+        "title": "Credits",
+        "width": 3,
+        "file": "credits.html",
+        "headerColor": "#525F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "credits.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "author": {
+    "name": "Aivoapina",
+    "email": "anssi.varjonen@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aivoapina/credits-64/issues"
+  },
+  "homepage": "https://github.com/Aivoapina/credits-64#readme",
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-plugin-react": "^7.30.1",
+    "parcel": "2.7.0"
+  }
+}
