@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .monospace {
+      font-family: monospace;
+    }
+    #results {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }
+    #results img {
+      max-width: 200px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div>
+      <label for="searchQuery">Search:</label>
+      <input name="searchQuery" id="searchQuery"></input>
+    </div>
+    <button id="confirmButton">OK</button>
+    <hr>
+    <div id="results">
+
+    </div>
+  </div>
+  <script>
+    const resultContainer = document.querySelector('#results');
+  
+    const setResults = (cards) => {
+      resultContainer.innerHTML = '';
+      cards.map(card => {
+        const imageContainer = document.createElement('div');
+        const imageElement = document.createElement('img');
+        const url = card.image_uris.png;
+        imageElement.setAttribute('src', url);
+        imageElement.onclick = () => {
+          imageReplicant.value = url;
+        }
+
+        imageContainer.appendChild(imageElement);
+        resultContainer.appendChild(imageContainer);
+      })
+    }
+
+    const searchQuery = document.querySelector('#searchQuery');
+    const imageReplicant = nodecg.Replicant('imageUrl');
+    const confirmButton = document.querySelector("#confirmButton");
+
+    const search = async (searchQuery) => {
+      const baseUrl = `https://api.scryfall.com/cards/search?q=${searchQuery}`;
+      const escapedUrl = encodeURI(baseUrl);
+      const res = await fetch(escapedUrl);
+      const data = await res.json();
+      setResults(data.data.slice(0, 20));
+    }
+
+    confirmButton.onclick = () => {
+      search(searchQuery.value)
+    }
+    searchQuery.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        search(searchQuery.value)
+      }
+    });
+  </script>
+</body>
+
+</html>

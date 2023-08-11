@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Credits } from './credits';
+import { Korttilaarnio } from './korttilaarnio';
 
 const root = document.getElementById('app');
-ReactDOM.render(<Credits />, root);
+ReactDOM.render(<Korttilaarnio />, root);
